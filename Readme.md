@@ -91,3 +91,9 @@ cd drupal
 docker run --rm -v "$PWD:/app" -w /app composer:2 composer config platform.php 8.1.0
 docker run --rm -v "$PWD:/app" -w /app composer require drush/drush --dev --ignore-platform-req=ext-gd
 ```
+
+## Instalacja nowych zależności
+
+[instalacja zależności](docs/dependenciesGin.md)
+
+##
