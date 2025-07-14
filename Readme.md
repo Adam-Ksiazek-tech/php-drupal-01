@@ -28,7 +28,7 @@ apache/drupal.conf
 
 
 - Tymczasowy kontener z Composerem (polecana, bez zmian w Dockerfile)
- 
+
 ```
 docker run --rm -v "$PWD:/app" -w /app composer:2 composer create-project --ignore-platform-req=ext-gd drupal/recommended-project:^9 drupal
 ```
