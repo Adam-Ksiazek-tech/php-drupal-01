@@ -16,6 +16,12 @@ PHP version 8.1.33 (/usr/local/bin/php)
 
 ### instalacja nowych zależności
 
+### drush
+
+```
+composer require --dev drush/drush
+```
+
 #### Gin (Drupal admin theme)
 
 Lepszy UX/UI: bardziej nowoczesny wygląd, zgodny z trendami projektowania.
@@ -46,10 +52,19 @@ composer require drupal/gin drupal/devel
 
 `root@48929d1805af:/var/www/html# composer require drupal/gin drupal/devel`
 
-### drush
+po zainstalowaniu gin i devel:
 
 ```
-composer require --dev drush/drush
+drush updb
+drush cr
 ```
+#### włączenie
+- Włącz moduł GIN
 
+`drush en devel -y`
 
+- Włącz motyw gin
+
+`drush theme:enable gin -y`
+
+###
