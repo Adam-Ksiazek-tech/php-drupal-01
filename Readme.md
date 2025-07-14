@@ -1,7 +1,7 @@
 # Drupal 9
 
 ## Struktura projektu
-
+```
 📁 drupal-docker-9/
 ├── 📁 apache/
 │   └── 📄 drupal.conf           ← tutaj umieszczasz plik konfiguracyjny Apache
@@ -14,12 +14,11 @@
 │       └── 📁 sites/
 │           └── 📁 default/
 │               └── 📁 files/
-
 ├── 📄 .env
 ├── 📁 scripts/             ← TU DODAJEMY SKRYPT DLA INSTALACJI OD ZERA
 │   └── 📄 init-drupal.sh  
 └── ...
-
+```
 ## Postawienie projektu od zera 
 
 na start, potrzebne są pliki:

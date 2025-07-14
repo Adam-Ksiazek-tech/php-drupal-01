@@ -1,0 +1,40 @@
+# === GŁÓWNY KATALOG PROJEKTU ===
+
+# Vendor z głównego poziomu (czasem Composer instalowany tu też zależności)
+/vendor/
+
+# Docker / środowisko
+.env
+*.log
+*.pid
+/tmp/
+docker/mysql/data/
+
+# PhpStorm / IDE
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS pliki
+.DS_Store
+Thumbs.db
+
+# === KATALOG DRUPAL ===
+/drupal/vendor/
+/drupal/composer.lock
+
+# Pliki tymczasowe Drupal (cache, pliki przesłane przez użytkowników)
+/drupal/web/sites/*/files/
+/drupal/web/sites/*/private/
+/drupal/web/sites/*/temp/
+
+# Pliki konfiguracyjne – generowane lokalnie i niestabilne
+/drupal/web/sites/*/settings.php
+/drupal/web/sites/*/services.yml
+
+# Backupy Drush
+/drush/
+/drupal/drush/backups/
+
+# Config sync (jeśli nie chcesz commitować pełnego configu – zależy od polityki zespołu)
+/drupal/config/sync/

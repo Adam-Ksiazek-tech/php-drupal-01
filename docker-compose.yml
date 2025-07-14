@@ -1,0 +1,40 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "${PROJECT_NAME}_web"
+    ports:
+      - "9080:80"  # Nietypowy port HTTP
+    volumes:
+      - ./drupal:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.5
+    container_name: "${PROJECT_NAME}_db"
+    restart: always
+    environment:
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "9306:3306"  # Nietypowy port MySQL
+    volumes:
+      - drupaltest_db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: "${PROJECT_NAME}_phpmyadmin"
+    restart: always
+    ports:
+      - "9081:80"  # Nietypowy port dla phpMyAdmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+
+volumes:
+  drupaltest_db_data:
