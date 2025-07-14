@@ -44,6 +44,13 @@ docker-compose up --build
 ```
 bash scripts/init-drupal.sh
 ```
+
+#### Kasowanie poprzedniego wolumenu db
+
+```
+docker volume rm <nazwa_wolumenu>
+```
+
 #### Lokalna baza danych
 
 Nazwa bazy danych	    drupal
