@@ -1,0 +1,14 @@
+mymodule.simplecontent:
+  path: '/mycustompath'
+  defaults:
+    _controller: 'Drupal\mymodule\Controller\FirstController::simpleContent'
+    _title: 'Simplicity is the ultimate sophistication'
+  requirements:
+    _permission: 'access content'
+mymodule.jsonhello:
+  path: '/mycustompath/json'
+  defaults:
+    _controller: 'Drupal\mymodule\Controller\FirstController::sayHelloJSON'
+    _title: 'JSON Hello'
+  requirements:
+    _permission: 'access content'
