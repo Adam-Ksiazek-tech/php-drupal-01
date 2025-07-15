@@ -13,3 +13,10 @@ mymodule.jsonhello:
   requirements:
     _access: 'TRUE'
 #    _permission: 'administer site configuration'
+mymodule.sayHello:
+  path: '/mycustompath/sayHello'
+  defaults:
+    _controller: 'Drupal\mymodule\Controller\FirstController::sayHello'
+    _title: 'say hello #100'
+  requirements:
+    _access: 'TRUE'
