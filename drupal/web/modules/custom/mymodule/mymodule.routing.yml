@@ -11,4 +11,5 @@ mymodule.jsonhello:
     _controller: 'Drupal\mymodule\Controller\FirstController::sayHelloJSON'
     _title: 'JSON Hello'
   requirements:
-    _permission: 'access content'
+    _access: 'TRUE'
+#    _permission: 'administer site configuration'
