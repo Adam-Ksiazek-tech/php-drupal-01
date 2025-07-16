@@ -1,11 +1,13 @@
 <?php
 
 /**
- * Implements hook_help().
+ * @file
+ * This file demonstrates how to use hook functions.
  */
-function mymodule_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    case 'help.page.mymodule':
-      return '<p>' . t('MyModule provides a simple custom route and controller.') . '</p>';
-  }
+
+/**
+ * Implements hook_cron().
+ */
+function mymodule_cron() {
+  \Drupal::messenger()->addMessage(t("Hello form mymodule cron hook!"));
 }
