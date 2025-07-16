@@ -14,7 +14,7 @@ class FirstController extends ControllerBase {
     ];
   }
 
-  public function variableContent() {
+  public function variableContent($name_1, $name_2) {
     return [
       '#type' => 'markup',
       '#markup' => t('@name1 and @name2 say hello',
