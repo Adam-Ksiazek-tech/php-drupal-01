@@ -11,3 +11,15 @@
 function mymodule_cron() {
   \Drupal::messenger()->addMessage(t("Hello form mymodule cron hook!"));
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function mymodule_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  \Drupal::messenger()->addMessage(t("form_id @id: ", ['@id' => $form_id] ));
+  if ($form_id == 'node_article_edit_form') {
+    $form['actions']['submit']['#value'] = t('Save this awesome article!');
+  } else if ($form_id == 'comment_comment_form') {
+    $form['actions']['submit']['#value'] = t('Save dla trybu widok!');
+  }
+}
