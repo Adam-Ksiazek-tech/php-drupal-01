@@ -14,6 +14,14 @@ class FirstController extends ControllerBase {
     ];
   }
 
+  public function variableContent() {
+    return [
+      '#type' => 'markup',
+      '#markup' => t('@name1 and @name2 say hello',
+        ['@name1' => $name_1, '@name2' => $name_2]),
+    ];
+  }
+
   public function sayHello() {
     return new Response('<html><body>Hello Drupal world.</body></html>');
   }
