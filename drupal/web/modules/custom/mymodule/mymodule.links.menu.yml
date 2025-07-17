@@ -1,13 +1,27 @@
-mymodule.simplecontentpage:
-  title: Simple Content link v2
-  description: Link to the simplecontent v2
+mymodule.simplecontentpage1:
+  title: Simple Content link v1
+  description: Link to the simplecontent v1
   route_name: mymodule.simplecontent
   weight: 10
   menu_name: main
 
 mymodule.simplecontentpage2:
+  title: Simple Content link v2
+  description: Link to the simplecontent v2
+  route_name: mymodule.simplecontent
+  weight: 10
+  menu_name: tools
+
+mymodule.simplecontentpage3:
   title: Simple Content link v3
   description: Link to the simplecontent v3
   route_name: mymodule.simplecontent
   weight: 10
   menu_name: tools
+
+mymodule.admin:
+  title: 'Hello module settings #100'
+  description: 'example of how to make an admin settings page link #100'
+  parent: system.admin_config_development
+  route_name: mymodule.simplecontent
+  weight: 100

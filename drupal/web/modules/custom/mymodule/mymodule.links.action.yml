@@ -1,0 +1,17 @@
+mymodule.send_email_action:
+  route_name: mymodule.jsonhello
+  title: 'Wyślij e-mail menu action #100'
+  appears_on:
+    - entity.node.collection
+
+mymodule.link_add:
+  route_name: mymodule.link_add
+  title: 'Add link'
+  appears_on:
+    - mymodule.menu_edit
+
+mymodule.menu_add:
+  route_name: mymodule.menu_add
+  title: 'Add menu'
+  appears_on:
+    - mymodule.overview_page

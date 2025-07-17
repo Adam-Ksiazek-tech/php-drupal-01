@@ -1,5 +1,20 @@
-mymodule.createtaskinmymodule:
-  route_name: mymodule.sayHello
+mymodule.createtaskinmymodule_task:
+  route_name: mymodule.simplecontent
   title: 'link menu test'
   base_route: entity.node.canonical
   weight: 100
+  options:
+    attributes:
+      style: 'color: red;'
+      class:
+        - 'button--primary'
+
+mymodule.settings_basic_tab_1_task:
+  route_name: mymodule.simplecontent
+  title: Basic_01
+  parent_id: mymodule.createtaskinmymodule
+
+mymodule.settings_basic_tab_2_task:
+  route_name: mymodule.simplecontent
+  title: Basic_02
+  parent_id: mymodule.createtaskinmymodule
