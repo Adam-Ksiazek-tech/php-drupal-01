@@ -67,8 +67,47 @@ class RSVPForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $submitted_email = $form_state->getValue('email');
-    $this->messenger()->addMessage($this->t("The form is working! You entered @entry.",
-      ['@entry' => $submitted_email]));
+//    $submitted_email = $form_state->getValue('email');
+//    $this->messenger()->addMessage($this->t("The form is working! You entered @entry.",
+//      ['@entry' => $submitted_email]));
+    try {
+      //Phase 1:
+      $uid = \Drupal::currentUser()->id();
+
+      $full_user = \Drupal::load(\Drupal::currentUser()->id());
+
+      $nid = $form_state->getValue('nid');
+      $email = $form_state->getValue('email');
+
+      $current_time = \Drupal::time()->getRequestTime();
+
+      //Phase 2:
+      $query = \Drupal::database()->insert('rsvplist');
+      $query->fields([
+        'uid',
+        'nid',
+        'mail',
+        'created',
+      ]);
+
+      $query->values([
+        $uid,
+        $nid,
+        $email,
+        $current_time,
+      ]);
+
+      $query->execute();
+
+      //Phase 3:
+      \Drupal::messenger()->addMessage(
+        $this->t('Thank you for your RSVP, you are on the list for the event!'));
+    }
+    catch (\Exception $e) {
+      \Drupal::messenger()->addError(
+        $this->t('Unable to save RSVP settings at this time due to database error.
+        Please try again.')
+      );
+    }
   }
 }
