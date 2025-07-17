@@ -1,0 +1,5 @@
+mymodule.createtaskinmymodule:
+  route_name: mymodule.sayHello
+  title: 'link menu test'
+  base_route: entity.node.canonical
+  weight: 100

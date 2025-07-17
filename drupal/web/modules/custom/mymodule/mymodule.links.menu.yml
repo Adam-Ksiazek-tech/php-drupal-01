@@ -1,0 +1,13 @@
+mymodule.simplecontentpage:
+  title: Simple Content link v2
+  description: Link to the simplecontent v2
+  route_name: mymodule.simplecontent
+  weight: 10
+  menu_name: main
+
+mymodule.simplecontentpage2:
+  title: Simple Content link v3
+  description: Link to the simplecontent v3
+  route_name: mymodule.simplecontent
+  weight: 10
+  menu_name: tools
