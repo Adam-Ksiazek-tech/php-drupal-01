@@ -9,6 +9,7 @@ namespace Drupal\rsvplist\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\Entity\User;
 
 class RSVPForm extends FormBase {
   /**
@@ -74,7 +75,8 @@ class RSVPForm extends FormBase {
       //Phase 1:
       $uid = \Drupal::currentUser()->id();
 
-      $full_user = \Drupal::load(\Drupal::currentUser()->id());
+      // Pobierz pełny obiekt użytkownika na podstawie jego ID
+      $full_user = User::load(\Drupal::currentUser()->id());
 
       $nid = $form_state->getValue('nid');
       $email = $form_state->getValue('email');
