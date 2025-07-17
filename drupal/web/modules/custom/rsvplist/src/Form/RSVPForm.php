@@ -53,6 +53,19 @@ class RSVPForm extends FormBase {
   /**
    * {@inheritdoc}
    */
+  public function validateForm(array &$form, FormStateInterface $form_state)
+  {
+    $value = $form_state->getValue('email');
+    if ( !(\Drupal::service('email.validator')->isValid($value))) {
+      $form_state->setErrorByName('email',
+        $this->t('It appears that the email address you entered is incorrect.
+        Please try again.', ['%mail' => $value]));
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $submitted_email = $form_state->getValue('email');
     $this->messenger()->addMessage($this->t("The form is working! You entered @entry.",
