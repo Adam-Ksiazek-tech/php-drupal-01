@@ -21,4 +21,13 @@ use Drupal\Core\Access\AccessResult;
  */
 class RSVPBlock extends BlockBase {
 
+  /**
+   * {@inheritdoc}
+   */
+  public function build() {
+    return [
+      '#type' => 'markup',
+      '#markup' => $this->t('My RSVP List Block'),
+    ];
+  }
 }
