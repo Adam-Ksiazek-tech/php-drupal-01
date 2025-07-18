@@ -16,7 +16,7 @@ use Drupal\Core\Access\AccessResult;
  *
  * @Block(
  *   id = "rsvp_block",
- *   admin_label = @Translation("The RSVP Block")
+ *   admin_label = @Translation("The RSVP Block #101")
  * )
  */
 class RSVPBlock extends BlockBase {
@@ -25,9 +25,21 @@ class RSVPBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    return [
+    /*return [
       '#type' => 'markup',
-      '#markup' => $this->t('My RSVP List Block'),
-    ];
+      '#markup' => $this->t('My RSVP List Block #102'),
+    ];*/
+
+    return \Drupal::formBuilder()->getForm('Drupal\rsvplist\Form\RSVPForm');
+  }
+
+  public function blockAccess(AccountInterface $account)
+  {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ( !(is_null($node)) ) {
+      return AccessResult::allowedIfHasPermission($account, 'view rsvplist');
+    }
+
+    return AccessResult::forbidden();
   }
 }
