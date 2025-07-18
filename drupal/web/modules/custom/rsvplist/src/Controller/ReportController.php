@@ -43,6 +43,39 @@ class ReportController extends ControllerBase {
       return NULL;
     }
   }
+
+  /**
+   * Creates the RSVPList report page.
+   *
+   * @return array
+   *  Render array for the RSVPList report output.
+   */
+  public function report() {
+    $content = [];
+    $content['message'] = [
+      '#markup' => $this->t('Below is a list of all Event RSVPs including username,
+        email address and the name of the event they will be attending.'),
+    ];
+
+    $headers = [
+      $this->t('Username'),
+      $this->t('Event'),
+      $this->t('Email'),
+    ];
+
+    $table_rows = $this->load();
+
+    $content['table'] = [
+      '#type' => 'table',
+      '#header' => $headers,
+      '#rows' => $table_rows,
+      '#empty' => $this->t('No entries available.'),
+    ];
+
+    $content['#cache']['max-age'] = 0;
+
+    return $content;
+  }
 }
 
 
