@@ -37,7 +37,10 @@ class ReportController extends ControllerBase {
       return $entries;
     }
     catch (\Exception $e) {
-
+      \Drupal::messenger()->addStatus(
+        $this->t('Unable to access the database at this time.  Please try again later.')
+      );
+      return NULL;
     }
   }
 }
