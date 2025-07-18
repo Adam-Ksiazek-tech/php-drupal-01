@@ -9,7 +9,7 @@ rsvplist.admin_settings:
 rsvplist.report:
   path: /admin/reports/rsvplist
   defaults:
-    _form: Drupal\rsvplist\Controller\ReportController:report
+    _controller: Drupal\rsvplist\Controller\ReportController::report
     _title: List of RSVPs
   requirements:
     _permission: access rsvplist report
