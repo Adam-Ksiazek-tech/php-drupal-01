@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\rsvplist\EnablerService;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
@@ -38,6 +39,25 @@ function rsvplist_form_node_form_alter(&$form, FormStateInterface $form_state, $
       ) {
         $form['actions'][$action]['#submit'][] = 'rsvplist_form_node_form_submit';
       }
+    }
+  }
+
+  /**
+   * Form submissin handler for RSVP item field on the node form.
+   * @see rsvplist_form_node_form_alter()
+   *
+   * @param array $form
+   * @param Drupal\Core\Form\FormStateInterface $form_state
+   */
+  function rsvplist_form_node_form_submit($form, FormStateInterface $form_state) {
+    /** @var EnablerService $enabler */
+    $enabler = \Drupal::service('rsvplist.enabler');
+    $node = $form_state->getFormObject()->getEntity();
+    if ($form_state->getValue('rsvplist_enabled')) {
+      $enabler->setEnabled($node);
+    }
+    else {
+      $enabler->delEnabled($node);
     }
   }
 
