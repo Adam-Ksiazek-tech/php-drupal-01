@@ -17,8 +17,8 @@ function rsvplist_form_node_form_alter(&$form, FormStateInterface $form_state, $
   $rsvp_config = \Drupal::config('rsvplist.settings');
   $allow_type = $rsvp_config->get('allowed_types');
 
-  \Drupal::messenger()->addMessage(t('allow_type: @allow_type', ['@allow_type' => implode(', ', $allow_type)]));
-  \Drupal::messenger()->addMessage('allow_type by json_encode: ' . json_encode($allow_type));
+//  \Drupal::messenger()->addMessage(t('allow_type: @allow_type', ['@allow_type' => implode(', ', $allow_type)]));
+//  \Drupal::messenger()->addMessage('allow_type by json_encode: ' . json_encode($allow_type));
 
 
   if (in_array($current_node_type, $allow_type)) {
