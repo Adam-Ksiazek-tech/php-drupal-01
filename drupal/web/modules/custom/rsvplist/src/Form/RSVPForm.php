@@ -24,9 +24,9 @@ class RSVPForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $node = \Drupal::routeMatch()->getParameter('node');
-//    \Drupal::messenger()->addMessage(t("form_id ---@id---", ['@id' => $form_id] ));
-    \Drupal::messenger()->addMessage($this->t('RSVPForm->buildForm, a tu node:@node', ['@node' => $node->label()]));
+
     if ( !(is_null($node)) ) {
+      \Drupal::messenger()->addMessage($this->t('RSVPForm->buildForm, a tu node:@node', ['@node' => $node->label()]));
       $nid = $node->id();
     }
     else {
