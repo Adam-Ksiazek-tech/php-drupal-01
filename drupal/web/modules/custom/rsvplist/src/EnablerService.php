@@ -9,6 +9,7 @@ namespace Drupal\rsvplist;
 
 use Drupal\Core\Database\Connection;
 use Drupal\node\Entity\Node;
+use MongoDB\Driver\Exception\Exception;
 
 class EnablerService {
   protected $database_connection;
@@ -42,6 +43,28 @@ class EnablerService {
       $this->t('Unable to determine RSVP settings at this time.'));
 
       return NULL;
+    }
+  }
+
+  /**
+   * Sets an individual node to be RSVP enabled.
+   *
+   * @param Node $node
+   * @throws Exception
+   */
+  public function setEnabled(Node $node) {
+    try {
+      if ( !($this->isEnabled($node))) {
+        $insert = $this->database_connection->insert('rsvplist_enabled');
+        $insert->fields(['nid']);
+        $insert->values([$node->id()]);
+        $insert->execute();
+      }
+    }
+    catch ( \Exception $e ) {
+      \Drupal::messenger()->addError(
+        $this->t('Unable to save RSVP settings at this time.')
+      );
     }
   }
 }
