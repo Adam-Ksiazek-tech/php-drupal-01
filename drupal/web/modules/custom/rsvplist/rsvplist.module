@@ -20,6 +20,14 @@ function rsvplist_form_node_form_alter(&$form, FormStateInterface $form_state, $
 //  \Drupal::messenger()->addMessage(t('allow_type: @allow_type', ['@allow_type' => implode(', ', $allow_type)]));
 //  \Drupal::messenger()->addMessage('allow_type by json_encode: ' . json_encode($allow_type));
 
+  \Drupal::logger('rsvplist')->debug('<pre>@data</pre>', [
+    '@data' => print_r([
+      'current_node_type' => $current_node_type,
+      'allow_type' => $allow_type,
+      'rsvp_config' => $rsvp_config->getRawData(),
+      'node_id' => $node->id(),
+    ], TRUE),
+  ]);
 
   if (in_array($current_node_type, $allow_type)) {
     $form['rsvplist'] = [
