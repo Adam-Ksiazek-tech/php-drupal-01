@@ -29,7 +29,7 @@ class EnablerService {
       return FALSE;
     }
     try {
-      $select = $this->database_connection->select("rsvplist_enabled', 're');
+      $select = $this->database_connection->select('rsvplist_enabled', 're');
       $select->fields('re', ['nid']);
       $select->condition('nid', $node->id());
       $results = $select->execute();
