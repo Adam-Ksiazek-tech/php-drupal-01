@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * RSVPList module hooks
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function rsvplist_form_node_form_alter(array &$form, FormStateInterface $form_id) {
+
+}
