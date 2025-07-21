@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
  */
-function rsvplist_form_node_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+function rsvplist_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $node = $form_state->getFormObject()->getEntity();
   $current_node_type = $node->getType();
   $rsvp_config = \Drupal::config('rsvplist.settings');
