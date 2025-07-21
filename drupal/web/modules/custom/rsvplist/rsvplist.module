@@ -10,6 +10,27 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
  */
-function rsvplist_form_node_form_alter(array &$form, FormStateInterface $form_id) {
+function rsvplist_form_node_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  $node = $form_state->getFormObject()->getEntity();
+  $current_node_type = $node->getType();
+  $rsvp_config = \Drupal::config('rsvplist.settings');
+  $allow_type = $rsvp_config->get('allowed_types');
+
+  if (!in_array($current_node_type, $allow_type)) {
+    $form['rsvplist'] = [
+      '#type' => 'details',
+      '#title' => t('RSVP list'),
+      '#access' => \Drupal::currentUser()->hasPermission('administer rsvplist'),
+      '#group' => 'advanced',
+      '#weight' => 50,
+    ];
+
+    $enabler = \Drupal::service('rsvplist.enabler');
+    $form['rsvplist']['rsvplist_enabled'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Collect RSVP email adress for this node.'),
+      '#default_value' => $enabler->isEnabled($node),
+    ];
+  }
 
 }
