@@ -67,4 +67,22 @@ class EnablerService {
       );
     }
   }
+
+  /**
+   * Deletes RSVP enabled settings for an individual node.
+   *
+   * @param Node $node
+   */
+  public function delEnabled(Node $node) {
+    try {
+      $delete = $this->database_connection->delete('rsvplist_enabled');
+      $delete->condition('nid', $node->id());
+      $delete->execute();
+    }
+    catch ( \Exception $e ) {
+      \Drupal::messenger()->addError(
+        $this->t('Unabled to save RSVP settings at this time.')
+      );
+    }
+  }
 }
