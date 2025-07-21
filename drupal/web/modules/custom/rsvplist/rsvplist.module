@@ -17,7 +17,11 @@ function rsvplist_form_node_form_alter(&$form, FormStateInterface $form_state, $
   $rsvp_config = \Drupal::config('rsvplist.settings');
   $allow_type = $rsvp_config->get('allowed_types');
 
-  if (!in_array($current_node_type, $allow_type)) {
+  \Drupal::messenger()->addMessage(t('allow_type: @allow_type', ['@allow_type' => implode(', ', $allow_type)]));
+  \Drupal::messenger()->addMessage('allow_type by json_encode: ' . json_encode($allow_type));
+
+
+  if (in_array($current_node_type, $allow_type)) {
     $form['rsvplist'] = [
       '#type' => 'details',
       '#title' => t('RSVP list'),
@@ -41,24 +45,24 @@ function rsvplist_form_node_form_alter(&$form, FormStateInterface $form_state, $
       }
     }
   }
-
-  /**
-   * Form submissin handler for RSVP item field on the node form.
-   * @see rsvplist_form_node_form_alter()
-   *
-   * @param array $form
-   * @param Drupal\Core\Form\FormStateInterface $form_state
-   */
-  function rsvplist_form_node_form_submit($form, FormStateInterface $form_state) {
-    /** @var EnablerService $enabler */
-    $enabler = \Drupal::service('rsvplist.enabler');
-    $node = $form_state->getFormObject()->getEntity();
-    if ($form_state->getValue('rsvplist_enabled')) {
-      $enabler->setEnabled($node);
-    }
-    else {
-      $enabler->delEnabled($node);
-    }
-  }
-
 }
+
+/**
+ * Form submissin handler for RSVP item field on the node form.
+ * @see rsvplist_form_node_form_alter()
+ *
+ * @param array $form
+ * @param Drupal\Core\Form\FormStateInterface $form_state
+ */
+function rsvplist_form_node_form_submit($form, FormStateInterface $form_state) {
+  /** @var EnablerService $enabler */
+  $enabler = \Drupal::service('rsvplist.enabler');
+  $node = $form_state->getFormObject()->getEntity();
+  if ($form_state->getValue('rsvplist_enabled')) {
+    $enabler->setEnabled($node);
+  }
+  else {
+    $enabler->delEnabled($node);
+  }
+}
+
