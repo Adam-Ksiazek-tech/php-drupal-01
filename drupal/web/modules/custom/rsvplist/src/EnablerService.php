@@ -34,12 +34,29 @@ class EnablerService {
       $select->condition('nid', $node->id());
       $results = $select->execute();
 
-      return !(empty( $results->fetchCol() ));
+      $nids = $results->fetchCol();
 
+      // LOGUJEMY WYNIK
+      \Drupal::logger('rsvplist')->debug('<pre>@data</pre>', [
+        '@data' => print_r([
+          'node_id' => $node->id(),
+          'query_result' => $nids,
+        ], TRUE),
+      ]);
+
+      return !(empty($nids));
     }
     catch ( \Exception $e ) {
       \Drupal::messenger()->addError(
       $this->t('Unable to determine RSVP settings at this time.'));
+
+      \Drupal::logger('rsvplist')->error('<pre>@data</pre>', [
+        '@data' => print_r([
+          'node_id' => $node->id(),
+          'error_message' => $e->getMessage(),
+          'trace' => $e->getTraceAsString(),
+        ], TRUE),
+      ]);
 
       return NULL;
     }
