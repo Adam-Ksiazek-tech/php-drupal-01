@@ -79,6 +79,17 @@ docker exec -it php-drupal_web bash -c "chmod 644 /var/www/html/web/sites/defaul
 
 docker exec -it php-drupal_web bash
 
+### phpMyAdmin
+
+- lokalny adres, ustawiony w docker-compose
+
+`http://localhost:9081/`
+ 
+- lokalne, testowe ustawienia 
+```
+drupal
+drupal
+```
 ## Dodanie drush
 
 dodanie drush przez composer dla via chwilowy docker
