@@ -36,7 +36,7 @@ class EnablerService {
 
       $nids = $results->fetchCol();
 
-      // LOGUJEMY WYNIK
+      /*
       \Drupal::logger('rsvplist')->debug('<pre>@data</pre>', [
         '@data' => print_r([
           'method' => "isEnabled",
@@ -44,12 +44,15 @@ class EnablerService {
           'query_result' => $nids,
         ], TRUE),
       ]);
+      */
 
       return !(empty($nids));
     }
     catch ( \Exception $e ) {
+      /*
       \Drupal::messenger()->addError(
-      $this->t('Unable to determine RSVP settings at this time.'));
+        t('Unable to determine RSVP settings at this time.'));
+      */
 
       \Drupal::logger('rsvplist')->error('<pre>@data</pre>', [
         '@data' => print_r([
@@ -83,6 +86,7 @@ class EnablerService {
         $insert->values([$node->id()]);
         $insert->execute();
 
+        /*
         \Drupal::logger('rsvplist')->notice('<pre>@data</pre>', [
           '@data' => print_r([
             'method' => "setEnabled",
@@ -93,12 +97,15 @@ class EnablerService {
             'status' => 'RSVP enabled entry inserted',
           ], TRUE),
         ]);
+        */
       }
     }
     catch ( \Exception $e ) {
+      /*
       \Drupal::messenger()->addError(
         t('Unable to save RSVP settings at this time.')
       );
+      */
 
       \Drupal::logger('rsvplist')->error('<pre>@data</pre>', [
         '@data' => print_r([
@@ -123,18 +130,22 @@ class EnablerService {
       $delete->condition('nid', $node->id());
       $delete->execute();
 
+      /*
       \Drupal::logger('rsvplist')->error('<pre>@data</pre>', [
         '@data' => print_r([
           'method' => "delEnabled",
           'node_id' => $node->id(),
         ], TRUE),
       ]);
+      */
 
     }
     catch ( \Exception $e ) {
+      /*
       \Drupal::messenger()->addError(
         t('Unabled to save RSVP settings at this time.')
       );
+      */
 
       \Drupal::logger('rsvplist')->error('<pre>@data</pre>', [
         '@data' => print_r([

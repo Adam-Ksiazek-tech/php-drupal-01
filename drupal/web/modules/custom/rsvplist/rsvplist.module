@@ -12,23 +12,29 @@ use Drupal\rsvplist\EnablerService;
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function rsvplist_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+//  \Drupal::logger('rsvplist')->notice('rsvplist_form_node_form_alter called for form: @form_id', ['@form_id' => $form_id]);
+
   $node = $form_state->getFormObject()->getEntity();
   $current_node_type = $node->getType();
   $rsvp_config = \Drupal::config('rsvplist.settings');
   $allow_types = $rsvp_config->get('allowed_types');
 
-//  \Drupal::messenger()->addMessage(t('allow_type: @allow_type', ['@allow_type' => implode(', ', $allow_type)]));
-//  \Drupal::messenger()->addMessage('allow_type by json_encode: ' . json_encode($allow_type));
+//  \Drupal::messenger()->addMessage(t('allow_types: @allow_types', ['@allow_types' => implode(', ', $allow_types)]));
+//  \Drupal::messenger()->addMessage('allow_types by json_encode: ' . json_encode($allow_types));
+
 
   /*
   \Drupal::logger('rsvplist')->debug('<pre>@data</pre>', [
     '@data' => print_r([
+      'hook' => 'rsvplist_form_node_form_alter',
       'current_node_type' => $current_node_type,
-      'allow_type' => $allow_type,
+      'allow_type' => json_encode($allow_types),
       'rsvp_config' => $rsvp_config->getRawData(),
       'node_id' => $node->id(),
     ], TRUE),
-  ]);*/
+  ]);
+  */
 
   if (in_array($current_node_type, $allow_types)) {
     $form['rsvplist'] = [
@@ -49,12 +55,27 @@ function rsvplist_form_node_form_alter(&$form, FormStateInterface $form_state, $
     ];
 
     foreach ( array_keys($form['actions']) as $action) {
+
+//      \Drupal::logger('rsvplist')->notice('Adding submit handler to action: @action', ['@action' => $action]);
+
+      /*
+      \Drupal::logger('rsvplist')->debug('<pre>@data</pre>', [
+        '@data' => print_r([
+          'hook' => 'rsvplist_form_node_form_alter',
+          'detail' => 'in_foreach',
+          'action' => $action,
+        ], TRUE),
+      ]);
+      */
+
       if (
-        $action != 'preview' && isset($form['actions'][$action][$action]['#type']) &&
+        $action != 'preview' &&
+        isset($form['actions'][$action]['#type']) &&
         $form['actions'][$action]['#type'] === 'submit'
       ) {
         $form['actions'][$action]['#submit'][] = 'rsvplist_form_node_form_submit';
       }
+
     }
   }
 }
@@ -73,11 +94,32 @@ function rsvplist_form_node_form_submit($form, FormStateInterface $form_state) {
 
   $node = $form_state->getFormObject()->getEntity();
 
+  /*
+  \Drupal::logger('rsvplist')->notice('rsvplist_form_node_form_submit called for node @nid, checkbox value: @val', [
+    '@nid' => $node->id(),
+    '@val' => $form_state->getValue('rsvplist_enabled') ? 'checked' : 'unchecked',
+  ]);
+  */
+
   if ($form_state->getValue('rsvplist_enabled')) {
     $enabler->setEnabled($node);
+
+    /*
+    \Drupal::logger('rsvplist')->notice('rsvplist_form_node_form_submit called for node @nid, checkbox value: @val', [
+      'method-fire' => 'setEnabled',
+      '@nid' => $node->id(),
+    ]);
+    */
   }
   else {
     $enabler->delEnabled($node);
+
+    /*
+    \Drupal::logger('rsvplist')->notice('rsvplist_form_node_form_submit called for node @nid, checkbox value: @val', [
+      'method-fire' => 'delEnabled',
+      '@nid' => $node->id(),
+    ]);
+    */
   }
 }
 
