@@ -39,6 +39,7 @@ class EnablerService {
       // LOGUJEMY WYNIK
       \Drupal::logger('rsvplist')->debug('<pre>@data</pre>', [
         '@data' => print_r([
+          'method' => "isEnabled",
           'node_id' => $node->id(),
           'query_result' => $nids,
         ], TRUE),
@@ -52,6 +53,7 @@ class EnablerService {
 
       \Drupal::logger('rsvplist')->error('<pre>@data</pre>', [
         '@data' => print_r([
+          'method' => "isEnabled",
           'node_id' => $node->id(),
           'error_message' => $e->getMessage(),
           'trace' => $e->getTraceAsString(),
@@ -69,6 +71,11 @@ class EnablerService {
    * @throws Exception
    */
   public function setEnabled(Node $node) {
+
+    // czy ta metoda jest uruchamiana
+    \Drupal::logger('rsvplist')->notice('✅ setEnabled() called for node @nid', ['@nid' => $node->id()]);
+
+
     try {
       if ( !($this->isEnabled($node)) ) {
         $insert = $this->database_connection->insert('rsvplist_enabled');
@@ -78,6 +85,7 @@ class EnablerService {
 
         \Drupal::logger('rsvplist')->notice('<pre>@data</pre>', [
           '@data' => print_r([
+            'method' => "setEnabled",
             'nid' => $node->id(),
             'type' => $node->getType(),
             'title' => $node->label(),
@@ -94,6 +102,7 @@ class EnablerService {
 
       \Drupal::logger('rsvplist')->error('<pre>@data</pre>', [
         '@data' => print_r([
+          'method' => "setEnabled",
           'node_id' => $node->id(),
           'error_message' => $e->getMessage(),
           'trace' => $e->getTraceAsString(),
@@ -113,11 +122,28 @@ class EnablerService {
       $delete = $this->database_connection->delete('rsvplist_enabled');
       $delete->condition('nid', $node->id());
       $delete->execute();
+
+      \Drupal::logger('rsvplist')->error('<pre>@data</pre>', [
+        '@data' => print_r([
+          'method' => "delEnabled",
+          'node_id' => $node->id(),
+        ], TRUE),
+      ]);
+
     }
     catch ( \Exception $e ) {
       \Drupal::messenger()->addError(
         t('Unabled to save RSVP settings at this time.')
       );
+
+      \Drupal::logger('rsvplist')->error('<pre>@data</pre>', [
+        '@data' => print_r([
+          'method' => "delEnabled",
+          'node_id' => $node->id(),
+          'error_message' => $e->getMessage(),
+          'trace' => $e->getTraceAsString(),
+        ], TRUE),
+      ]);
     }
   }
 }
