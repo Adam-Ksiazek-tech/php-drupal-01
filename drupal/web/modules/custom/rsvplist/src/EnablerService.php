@@ -70,17 +70,36 @@ class EnablerService {
    */
   public function setEnabled(Node $node) {
     try {
-      if ( !($this->isEnabled($node))) {
+      if ( !($this->isEnabled($node)) ) {
         $insert = $this->database_connection->insert('rsvplist_enabled');
         $insert->fields(['nid']);
         $insert->values([$node->id()]);
         $insert->execute();
+
+        \Drupal::logger('rsvplist')->notice('<pre>@data</pre>', [
+          '@data' => print_r([
+            'nid' => $node->id(),
+            'type' => $node->getType(),
+            'title' => $node->label(),
+            'is_published' => $node->isPublished(),
+            'status' => 'RSVP enabled entry inserted',
+          ], TRUE),
+        ]);
       }
     }
     catch ( \Exception $e ) {
       \Drupal::messenger()->addError(
         t('Unable to save RSVP settings at this time.')
       );
+
+      \Drupal::logger('rsvplist')->error('<pre>@data</pre>', [
+        '@data' => print_r([
+          'node_id' => $node->id(),
+          'error_message' => $e->getMessage(),
+          'trace' => $e->getTraceAsString(),
+        ], TRUE),
+      ]);
+
     }
   }
 

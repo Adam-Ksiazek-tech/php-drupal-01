@@ -77,7 +77,7 @@ docker exec -it php-drupal_web bash -c "chmod 644 /var/www/html/web/sites/defaul
 
 ### Wejście do dockera
 
-docker exec -it drupal9_custom_web bash
+docker exec -it php-drupal_web bash
 
 ## Dodanie drush
 
