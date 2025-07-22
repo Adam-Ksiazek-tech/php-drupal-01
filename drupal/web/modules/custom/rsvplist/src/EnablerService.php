@@ -79,7 +79,7 @@ class EnablerService {
     }
     catch ( \Exception $e ) {
       \Drupal::messenger()->addError(
-        $this->t('Unable to save RSVP settings at this time.')
+        t('Unable to save RSVP settings at this time.')
       );
     }
   }
@@ -97,7 +97,7 @@ class EnablerService {
     }
     catch ( \Exception $e ) {
       \Drupal::messenger()->addError(
-        $this->t('Unabled to save RSVP settings at this time.')
+        t('Unabled to save RSVP settings at this time.')
       );
     }
   }
