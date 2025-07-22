@@ -9,7 +9,6 @@ namespace Drupal\rsvplist;
 
 use Drupal\Core\Database\Connection;
 use Drupal\node\Entity\Node;
-use MongoDB\Driver\Exception\Exception;
 
 class EnablerService {
   protected $database_connection;
