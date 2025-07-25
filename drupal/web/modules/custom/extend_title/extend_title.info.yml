@@ -1,0 +1,7 @@
+name: 'Extend Title'
+type: module
+description: 'Wstawia blok HTML pod tytułem artykułu.'
+core_version_requirement: ^9
+package: Custom
+dependencies:
+  - node
