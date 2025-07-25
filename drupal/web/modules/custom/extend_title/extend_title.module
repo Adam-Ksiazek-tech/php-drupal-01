@@ -7,9 +7,9 @@ use Drupal\Core\Block\BlockManagerInterface;
 * Implements hook_node_view().
 */
 function extend_title_node_view(array &$build, NodeInterface $node, $view_mode) {
-\Drupal::logger('extend_title')->notice('Node bundle: @type', ['@type' => $node->bundle()]);
+  \Drupal::logger('extend_title')->notice('Node bundle: @type', ['@type' => $node->bundle()]);
 
-if ($node->bundle() === 'article') {
+  if ($node->bundle() === 'article') {
 
     // Załaduj blok.
     $block_manager = \Drupal::service('plugin.manager.block');
