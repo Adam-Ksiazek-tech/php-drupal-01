@@ -3,3 +3,10 @@ offer.toolbar.my_offers:
   route_name: entity.offer.collection
   parent: system.admin
   weight: 99
+
+offer.admin.structure.settings:
+  title: 'Offer settings #101'
+  description: 'Configure Offer entity'
+  route_name: entity.offer.settings
+  parent: system.admin_structure
+  weight: 0
