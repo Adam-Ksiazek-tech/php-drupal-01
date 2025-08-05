@@ -1,0 +1,20 @@
+langcode: pl
+status: true
+dependencies:
+  config:
+    - field.storage.offer.field_description
+  module:
+    - offer
+    - text
+id: offer.offer.field_description
+field_name: field_description
+entity_type: offer
+bundle: offer
+label: Description
+description: 'Offer description ale wyklikane przez Offer settings'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

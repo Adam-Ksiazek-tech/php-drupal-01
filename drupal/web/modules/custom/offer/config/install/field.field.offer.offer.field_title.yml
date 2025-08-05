@@ -1,0 +1,20 @@
+langcode: pl
+status: true
+dependencies:
+  config:
+    - field.storage.offer.field_title
+  module:
+    - offer
+    - text
+id: offer.offer.field_title
+field_name: field_title
+entity_type: offer
+bundle: offer
+label: Title
+description: 'offer title wyklikane w Offer settings'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text
