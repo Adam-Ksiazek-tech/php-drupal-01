@@ -190,5 +190,21 @@ class Offer extends EditorialContentEntityBase {
     return 'Be the first!';
   }
 
+  /**
+   * Return a price string based on field_price
+   * @return string
+   */
+  public function getPriceAmount() {
+
+    switch($this->get('field_offer_type')->getString()) {
+      case 'with_minimum':
+        return $this->get('field_price')->getString() . '$';
+      case 'no_minimum':
+        return 'Start bidding at 0$';
+    }
+
+    return '';
+  }
+
 
 }

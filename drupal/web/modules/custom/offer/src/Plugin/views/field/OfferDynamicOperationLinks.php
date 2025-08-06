@@ -73,7 +73,7 @@ class OfferDynamicOperationLinks extends FieldPluginBase
       case 'draft':
         $operations['publish'] = [
           'title' => $this->t('Publish'),
-          'url' => Url::fromRoute('entity.offer.edit_form', ['offer' => $entity->id()])
+          'url' => Url::fromRoute('offer.publish', ['offer' => $entity->id()])
         ];
         break;
     }
