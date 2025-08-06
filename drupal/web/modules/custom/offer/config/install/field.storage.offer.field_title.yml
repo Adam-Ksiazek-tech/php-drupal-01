@@ -1,0 +1,20 @@
+uuid: cff94a35-b3cf-44a2-bf5a-3777c6926a46
+langcode: pl
+status: true
+dependencies:
+  module:
+    - offer
+    - text
+id: offer.field_title
+field_name: field_title
+entity_type: offer
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

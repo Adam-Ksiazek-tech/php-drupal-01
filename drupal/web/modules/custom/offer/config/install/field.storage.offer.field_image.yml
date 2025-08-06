@@ -1,0 +1,20 @@
+uuid: 352ea9c3-1044-4293-b4ee-26bfd4a4071f
+langcode: pl
+status: true
+dependencies:
+  module:
+    - media
+    - offer
+id: offer.field_image
+field_name: field_image
+entity_type: offer
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

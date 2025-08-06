@@ -1,0 +1,20 @@
+uuid: 60755f30-bd80-40ea-a009-ef52954aa1b3
+langcode: pl
+status: true
+dependencies:
+  module:
+    - offer
+id: offer.field_price
+field_name: field_price
+entity_type: offer
+type: decimal
+settings:
+  precision: 10
+  scale: 0
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
