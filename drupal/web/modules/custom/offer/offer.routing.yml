@@ -47,17 +47,17 @@ entity.offer.settings:
   requirements:
     _permission: 'administer own offers'
 
-#offer.publish:
-#  path: '/offers/publish/{offer}'
-#  defaults:
-#    _controller: '\Drupal\offer\Controller\OfferPublishController::Render'
-#    _title_callback: 'Publish offer'
-#  requirements:
-#    _custom_access: '\Drupal\offer\Controller\OfferPublishController::Access'
-#  options:
-#    parameters:
-#      offer:
-#        type: entity:offer
+offer.publish:
+  path: '/offers/publish/{offer}'
+  defaults:
+    _controller: '\Drupal\offer\Controller\OfferPublishController::Render'
+    _title_callback: 'Publish offer'
+  requirements:
+    _custom_access: '\Drupal\offer\Controller\OfferPublishController::Access'
+  options:
+    parameters:
+      offer:
+        type: entity:offer
 
 #offer.add:
 #  path: '/offers/create'
