@@ -53,6 +53,9 @@ use Drupal\notification\Entity\Notification;
  *      "views_data" = "Drupal\offer\OfferViewsData",
  *      "form" = {
  *       "add" = "Drupal\offer\Form\OfferForm",
+ *       "step_1" = "Drupal\offer\Form\OfferAddFormStep1",
+ *       "step_2" = "Drupal\offer\Form\OfferAddFormStep2",
+ *       "step_3" = "Drupal\offer\Form\OfferAddFormStep3",
  *       "edit" = "Drupal\offer\Form\OfferForm",
  *       "delete" = "Drupal\offer\Form\OfferDeleteForm",
  *      }

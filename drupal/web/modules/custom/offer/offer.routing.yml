@@ -1,10 +1,10 @@
-offer.add:
-  path: '/offers/create'
-  defaults:
-    _entity_form: offer.add
-    _title: 'Add offer'
-  requirements:
-    _entity_create_access: 'offer'
+#offer.add:
+#  path: '/offers/create'
+#  defaults:
+#    _entity_form: offer.add
+#    _title: 'Add offer'
+#  requirements:
+#    _entity_create_access: 'offer'
 
 entity.offer.edit_form:
   path: '/offers/{offer}/edit'
@@ -59,37 +59,37 @@ offer.publish:
       offer:
         type: entity:offer
 
-#offer.add:
-#  path: '/offers/create'
-#  defaults:
-#    _entity_form: offer.step_1
-#    _title: 'Step 1: set your title'
-#  requirements:
-#    _entity_create_access: 'offer'
+offer.add:
+  path: '/offers/create'
+  defaults:
+    _entity_form: offer.step_1
+    _title: 'Step 1: set your title'
+  requirements:
+    _entity_create_access: 'offer'
 
-#offer.step1:
-#  path: '/offers/create/{offer}'
-#  defaults:
-#    _entity_form: offer.step_1
-#    _title: 'Step 1: set your title'
-#  requirements:
-#    _entity_create_access: 'offer'
+offer.step1:
+  path: '/offers/create/{offer}'
+  defaults:
+    _entity_form: offer.step_1
+    _title: 'Step 1: set your title'
+  requirements:
+    _entity_create_access: 'offer'
 
-#offer.step2:
-#  path: '/offers/create/step2/{offer}'
-#  defaults:
-#    _entity_form: offer.step_2
-#    _title: 'Step 2: add a description and image'
-#  requirements:
-#    _entity_access: 'offer.edit'
+offer.step2:
+  path: '/offers/create/step2/{offer}'
+  defaults:
+    _entity_form: offer.step_2
+    _title: 'Step 2: add a description and image'
+  requirements:
+    _entity_access: 'offer.edit'
 
-#offer.step3:
-#  path: '/offers/create/step3/{offer}'
-#  defaults:
-#    _entity_form: offer.step_3
-#    _title: 'Step 3: choose the type of offer'
-#  requirements:
-#    _entity_access: 'offer.edit'
+offer.step3:
+  path: '/offers/create/step3/{offer}'
+  defaults:
+    _entity_form: offer.step_3
+    _title: 'Step 3: choose the type of offer'
+  requirements:
+    _entity_access: 'offer.edit'
 
 #offer.config:
 #  path: '/admin/config/offer/adminsettings'

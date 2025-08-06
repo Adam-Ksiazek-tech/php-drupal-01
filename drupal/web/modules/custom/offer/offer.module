@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Implements hook_form_alter().
  */
 function offer_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
-  /*$forms = ['offer_step_1_form', 'offer_step_2_form', 'offer_step_3_form', 'offer_edit_form'];
+  $forms = ['offer_step_1_form', 'offer_step_2_form', 'offer_step_3_form', 'offer_edit_form'];
   if (in_array($form_id, $forms)) {
     $form['revision_log']['#access'] = FALSE;
-  }*/
+  }
 }
 
 /**
