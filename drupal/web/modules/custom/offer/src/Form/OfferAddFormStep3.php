@@ -25,11 +25,15 @@ class OfferAddFormStep3 extends ContentEntityForm {
     $form = parent::buildForm($form, $form_state);
     $form['actions']['submit']['#value'] = t('Save and proceed');
 
-    /*$form['field_price']['#states'] = [
-      'visible' => [
-        ['select[name="field_offer_type"]' => ['value' => 'with_minimum']],
-      ]
-    ];*/
+    //    unset($form['actions']['delete']);
+
+    if (isset($form['field_price'])) {
+      $form['field_price']['#states'] = [
+        'visible' => [
+          ['select[name="field_offer_type"]' => ['value' => 'with_minimum']],
+        ]
+      ];
+    }
 
     return $form;
   }
